@@ -1,0 +1,29 @@
+{
+    "name": "ofi/ofi_php_framework",
+    "description": "OFI PHP Framework engine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Teguh Rijanandi",
+            "email": "teguhrijanandi02@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "ofi\\ofi_php_framework\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ofi\\ofi_php_framework\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
