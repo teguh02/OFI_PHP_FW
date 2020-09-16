@@ -3,10 +3,10 @@
 namespace ofi\ofi_php_framework;
 
 use App\provider\event;
-use vendor\OFI_PHP_Framework\Controller;
+use ofi\ofi_php_framework\Controller;
 use Exception;
 use App\Middleware\kernel as middlewareKernel;
-use vendor\OFI_PHP_Framework\Controller\Route;
+use ofi\ofi_php_framework\Controller\Route;
 
 session_start();
 global $config;
@@ -126,20 +126,18 @@ class Core extends event
      */
     public function searchByValue($id, $array)
     {
-
         for ($i=0; $i < count($array) ; $i++) { 
+            
             // Jika Request URI sama dengan /
             // dan url kosong ditemukan maka akan dialihkan ke index
             if ($this->project_index_path == '/' && $array[$i]['url'] == '') {
-                return $array[$i]['url'];
+                return $array[$i];
             } else {
 
-                if (strtolower($id) == strtolower($array[$i]['url'])) {
-                    return $array[$i]['url'];
+                if (strtolower($array[$i]['url']) == strtolower($id)) {
+                    return $array[$i];
                 }             
             }
-
-            return false;
         }
     }
 
@@ -149,62 +147,19 @@ class Core extends event
         $route = Route::getAsArray();
         $get_url = $this->project_index_path;
 
-        /**
-         * Konvert string ke array
-         * Hasilnya str_split($get_url) akan menjadi
-         * Array
-         * (
-         *     [0] => /
-         *     [1] => t
-         *     [2] => e
-         *     [3] => s
-         *     [4] => t
-         * )
-         */
-
-        $url_array = str_split($get_url);
-
-        /**
-         * Proses menghilangkan menggunakan array_shift($url_array), 
-         * pada data array index 0 (tanda '/' hilang)
-         * Hasil akhirnya menjadi
-         * Array
-         * (
-         *     [0] => t
-         *     [1] => e
-         *     [2] => s
-         *     [3] => t
-         * )
-         */
-
-        array_shift($url_array);
-
-        /**
-         * Hasil URL setelah melalui proses diatas akan menjadi 
-         * dari seperti ini 
-         * Array
-         * (
-         *     [0] => t
-         *     [1] => e
-         *     [2] => s
-         *     [3] => t
-         * )
-         * 
-         * akan menjadi seperti ini
-         * test
-         * dengan ada nya proses $url = implode('', $url_array);
-         */
+        $url_array = ltrim($get_url, '/');
 
         //  Proses mendeteksi apakah ada parameter atau tidak. 
         // Jika ada maka bersihkan semua parameternya dan ambil url utamanya saja
 
-         if(substr(strtok(implode('', $url_array), '?'), -1) == '/') {
-             $url = rtrim(strtok(implode('', $url_array), '?'), '/');
+         if(substr(strtok($url_array, '?'), -1) == '/') {
+             $url = rtrim(strtok($url_array, '?'), '/');
          } else {
-             $url = strtok(implode('', $url_array), '?');
+             $url = strtok($url_array, '?');
          }
 
         $searchValue = $this->searchByValue($url, $route);
+
         $controller = new Controller();
 
         // Jika URL Tersedia
@@ -265,6 +220,7 @@ class Core extends event
             // Jika URL tidak tersedia maka cek pada folder controller
 
             $url_explode = explode('/', $url);
+
             $total_url_explode = count($url_explode);
 
             // Jika url memuat tanda ? (untuk parameter)

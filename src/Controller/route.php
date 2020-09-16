@@ -2,7 +2,7 @@
 
 namespace ofi\ofi_php_framework\Controller;
 use Exception;
-use vendor\OFI_PHP_Framework\Controller\getRoute;
+use ofi\ofi_php_framework\Controller\getRoute;
 
 class route {
 

@@ -6,12 +6,12 @@ use App\provider\event;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-use vendor\OFI_PHP_Framework\Flash\message;
-use vendor\OFI_PHP_Framework\Support\errorPage;
-use vendor\OFI_PHP_Framework\Support\Request;
-use vendor\OFI_PHP_Framework\Support\Response;
-use vendor\OFI_PHP_Framework\Support\Session;
-use vendor\OFI_PHP_Framework\Support\View;
+use ofi\ofi_php_framework\Flash\message;
+use ofi\ofi_php_framework\Support\errorPage;
+use ofi\ofi_php_framework\Support\Request;
+use ofi\ofi_php_framework\Support\Response;
+use ofi\ofi_php_framework\Support\Session;
+use ofi\ofi_php_framework\Support\View;
 
 class Controller extends event
 {

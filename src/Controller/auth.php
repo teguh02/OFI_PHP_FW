@@ -2,7 +2,7 @@
 
 namespace ofi\ofi_php_framework\Controller;
 
-use vendor\OFI_PHP_Framework\Controller;
+use ofi\ofi_php_framework\Controller;
 use App\provider\event;
 use App\users;
 

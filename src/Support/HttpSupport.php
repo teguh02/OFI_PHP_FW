@@ -3,10 +3,10 @@
 namespace ofi\ofi_php_framework\Support;
 
 use Exception;
-use vendor\OFI_PHP_Framework\Support\Curl\DELETE;
-use vendor\OFI_PHP_Framework\Support\Curl\GET;
-use vendor\OFI_PHP_Framework\Support\Curl\POST;
-use vendor\OFI_PHP_Framework\Support\Curl\PUTS;
+use ofi\ofi_php_framework\Support\Curl\DELETE;
+use ofi\ofi_php_framework\Support\Curl\GET;
+use ofi\ofi_php_framework\Support\Curl\POST;
+use ofi\ofi_php_framework\Support\Curl\PUTS;
 
 class HttpSupport {
 
