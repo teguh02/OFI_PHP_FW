@@ -7,6 +7,9 @@ namespace ofi\ofi_php_framework\Support;
  */
 
 use DebugBar\StandardDebugBar;
+use Mustache_Engine;
+use Mustache_Loader_FilesystemLoader;
+use Exception;
 
 trait View {
 
@@ -74,9 +77,23 @@ trait View {
 
     public function loadViewInTemplate($viewName, $viewData)
     {
-        $flash = new \Plasticbrain\FlashMessages\FlashMessages();
-        $helper = new \App\Core\helper();
-        extract($viewData);
-        include 'Views/'.$viewName.'.ofi.php';
+        try {
+            // Ekstensi mustachenya
+            $options =  array('extension' => '.ofi.php');
+
+            $mustache = new Mustache_Engine(array(
+               'loader' => new Mustache_Loader_FilesystemLoader(ViewsFolder ,$options) 
+            ));
+
+            $flash = new \Plasticbrain\FlashMessages\FlashMessages();
+            $helper = new \App\Core\helper();
+            extract($viewData);
+            // include 'Views/'.$viewName.'.ofi.php';
+
+            $template = $mustache->loadTemplate($viewName);
+            echo $template->render($viewData);
+        } catch (\Throwable $th) {
+            throw new Exception("Can't find view folder configuration! Please check your config file", 404);
+        }
     }
 }
