@@ -7,6 +7,7 @@ use ofi\ofi_php_framework\Controller;
 use Exception;
 use App\Middleware\kernel as middlewareKernel;
 use ofi\ofi_php_framework\Controller\Route;
+use ofi\ofi_php_framework\Support\CSRF;
 
 session_start();
 global $config;
@@ -20,7 +21,21 @@ define('BASEURL', $_SERVER["DOCUMENT_ROOT"]);
  * Add CSRF input hidden to your form
  */
 
-define('CSRF', \Volnix\CSRF\CSRF::getHiddenInputString());
+define('CSRF', CSRF::getHiddenInputString());
+
+/**
+ * Get CSRF Input Name
+ * default CSRF input name is 
+ * OFI_FW_CSRF
+ */
+
+define('CSRFNAME', CSRF::getTokenName());
+
+/**
+ * Get CSRF only Value
+ */
+
+define('CSRFVALUE', CSRF::getToken());
 
 class Core extends event
 {
