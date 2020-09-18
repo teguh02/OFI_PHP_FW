@@ -89,6 +89,9 @@ class Core extends event
      */
     public function run()
     {
+        // Harus yang paling atas
+        $this->CSRF();
+
         // To block PUT, PATCH, DELETE Request (Only GET and POST are allowed in our system)   
         $request_method = $_SERVER['REQUEST_METHOD'];
         if($request_method == 'PUT' || $request_method == 'PATCH' || $request_method == 'DELETE') {
@@ -99,7 +102,6 @@ class Core extends event
         $this->checkMyPHPVersion();
         $this->whenRun();
         $this->route();
-        $this->CSRF();
     }
 
     /**
