@@ -7,6 +7,7 @@ namespace ofi\ofi_php_framework\Support;
  */
 
 use DebugBar\StandardDebugBar;
+use Exception;
 
 trait View {
 
