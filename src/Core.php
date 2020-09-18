@@ -146,7 +146,7 @@ class Core extends event
 
             // Jika tidak ditemukan dalam daftar array maka tampilkan pesan
             if(!in_array($request_url, $bypass)) {
-                if (!\Volnix\CSRF\CSRF::validate($getToken) ) {
+                if (!CSRF::validate($getToken) ) {
                     throw new Exception("Invalid CSRF token! Please add csrf token to your code", 1);
                     die();
                 }
