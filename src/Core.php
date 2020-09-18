@@ -39,6 +39,9 @@ define('CSRFVALUE', CSRF::getToken());
 
 class Core extends event
 {
+
+    protected const MINIMUM_PHP_VERSION = "7.2.0";
+
     public function __construct()
     {
         $middleware = new middlewareKernel();
@@ -93,9 +96,25 @@ class Core extends event
             die();
         }
 
+        $this->checkMyPHPVersion();
         $this->whenRun();
         $this->route();
         $this->CSRF();
+    }
+
+    /**
+     * To check my php version
+     * Minimum version is PHP 7.2 to
+     * run this project
+     */
+
+    public function checkMyPHPVersion()
+    {
+        if (version_compare(PHP_VERSION, self::MINIMUM_PHP_VERSION, '<')) {
+            // If my php version is under from MINIMUM_PHP_VERSION
+            // show error
+            throw new Exception("Your PHP version are not supported with our system, our minimum php version is " . self::MINIMUM_PHP_VERSION, 500);
+        }
     }
 
     /**
