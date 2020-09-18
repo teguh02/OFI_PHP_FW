@@ -75,9 +75,30 @@ trait View {
 
     public function loadViewInTemplate($viewName, $viewData)
     {
-        $flash = new \Plasticbrain\FlashMessages\FlashMessages();
-        $helper = new \App\Core\helper();
-        extract($viewData);
-        include 'Views/'.$viewName.'.ofi.php';
+        // Cek apakah konfigurasi views folder ada atau tidak
+        if (!defined('ViewsFolder')) {
+            throw new Exception("Can't find views folder configuration!", 1);
+        }
+
+        // Jika ada maka menuju proses selanjutnya
+
+        /**
+         * Pertama kita perlu mengecek apakah file ada 
+         * atau tidak
+         */
+
+        $path_to_file = ViewsFolder . str_replace('\\', '/', $viewName) . '.ofi.php';
+
+        // Jika file ada
+        if(is_file($path_to_file)) {
+            // Tampilkan template
+            $flash = new \Plasticbrain\FlashMessages\FlashMessages();
+            $helper = new \App\Core\helper();
+            extract($viewData);
+            include $path_to_file;
+        } else {
+            // Jika tidak maka berikan pesan error
+            throw new Exception("File " . $viewName . '.ofi.php at ' . $path_to_file . ' not found!' , 404);
+        }
     }
 }
