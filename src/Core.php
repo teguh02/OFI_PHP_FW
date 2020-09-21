@@ -13,10 +13,6 @@ session_start();
 global $config;
 require 'config.php';
 
-// Dont change this line
-define('BASEURL', $_SERVER["DOCUMENT_ROOT"]);
-
-
 /**
  * Add CSRF input hidden to your form
  */
