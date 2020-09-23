@@ -54,12 +54,13 @@ class Core extends event
                 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
                 $whoops->register();
                 error_reporting(E_ALL);
-                error_reporting(E_ALL & E_NOTICE & E_DEPRECATED & E_STRICT & E_USER_NOTICE & E_USER_DEPRECATED);
+                ini_set('display_errors', 1);
                 break;
         
             case 'production':
                 
                 error_reporting(0);
+                ini_set('display_errors', 0);
                 try {
                     $this->run();
                 } catch (\Throwable $th) {
