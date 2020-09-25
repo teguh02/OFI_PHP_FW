@@ -9,6 +9,7 @@ namespace ofi\ofi_php_framework\Support;
 use DebugBar\StandardDebugBar;
 use Exception;
 use ofi\ofi_php_framework\Helper\helper;
+use ofi\ofi_php_framework\Controller\route as Route;
 
 trait View {
 
@@ -34,7 +35,8 @@ trait View {
             $debugbar = new StandardDebugBar();
             $debugbarRenderer = $debugbar->getJavascriptRenderer();	
             $debugbar["messages"]->addMessage("OFI PHP Framework Ready To Use!");
-            $debugbar["messages"]->addMessage("Base DIR Project : " . BASEURL);
+            $debugbar["messages"]->addMessage("Project URL : " . BASEURL);
+            $debugbar["messages"]->addMessage("Current URL Name : " . Route::getName());
         }
 
         echo '

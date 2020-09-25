@@ -38,6 +38,10 @@ class route {
         }
     }
 
+    /**
+     * Define route middleware
+     */
+
     public function middleware($value)
     {
         if (self::$routeStatus) {
@@ -58,6 +62,10 @@ class route {
         }
     }
 
+    /**
+     * URL type view or controller
+     */
+
     public function type($value)
     {
         if (self::$routeStatus) {
@@ -68,6 +76,10 @@ class route {
         }
     }
 
+    /**
+     * Your url request
+     */
+
     public function url($value)
     {
         if (self::$routeStatus) {
@@ -77,6 +89,10 @@ class route {
             throw new Exception("Invalid route code structure", 1);
         }
     }
+
+    /**
+     * Destination from your route
+     */
 
     public function to($value)
     {
@@ -109,10 +125,29 @@ class route {
         }
     }
 
+    /**
+     * Define route method
+     * POST, GET
+     */
+
     public function method($value)
     {
         if (self::$routeStatus) {
             self::$arrayRoute[self::$index]['method'] = strtoupper($value);
+            return self::$_instance;
+        } else {
+            throw new Exception("Invalid route code structure", 1);
+        }
+    }
+
+    /**
+     * Define route name
+     */
+
+    public function name($name)
+    {
+        if (self::$routeStatus) {
+            self::$arrayRoute[self::$index]['name'] = $name;
             return self::$_instance;
         } else {
             throw new Exception("Invalid route code structure", 1);
