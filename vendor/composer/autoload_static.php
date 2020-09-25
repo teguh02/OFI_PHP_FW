@@ -30,6 +30,7 @@ class ComposerStaticInited32270ce3296abe85dd7526331ddf1c
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Plasticbrain\\FlashMessages\\' => 27,
         ),
         'D' => 
         array (
@@ -62,6 +63,10 @@ class ComposerStaticInited32270ce3296abe85dd7526331ddf1c
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Plasticbrain\\FlashMessages\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/plasticbrain/php-flash-messages/src',
         ),
         'DebugBar\\' => 
         array (

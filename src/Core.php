@@ -223,7 +223,7 @@ class Core extends event
                 $get_only_Method_Name = $request_controller[1];
 
                 // Checking HTTP Method
-                if (!$searchValue['method'] || $_SERVER['REQUEST_METHOD'] === strtoupper($searchValue['method'])) {
+                if (!isset($searchValue['method']) || $_SERVER['REQUEST_METHOD'] === strtoupper($searchValue['method'])) {
 
                     // Checking Middleware (if isset)
                     if(isset($searchValue['middleware']) && $searchValue['middleware'] != null) {
