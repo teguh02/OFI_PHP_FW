@@ -2,6 +2,7 @@
 
 namespace ofi\ofi_php_framework;
 
+session_start();
 use App\provider\event;
 use ofi\ofi_php_framework\Controller;
 use Exception;
@@ -9,10 +10,9 @@ use App\Middleware\kernel as middlewareKernel;
 use ofi\ofi_php_framework\Controller\Route;
 use ofi\ofi_php_framework\Support\CSRF;
 
-session_start();
 global $config;
 require 'config.php';
-require '../vendor/autoload.php';
+require dirname(__FILE__) . '/../vendor/autoload.php';
 
 /**
  * Add CSRF input hidden to your form
