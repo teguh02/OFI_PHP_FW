@@ -44,7 +44,7 @@ class Core extends event
         $middleware = new middlewareKernel();
         $middleware->register();
 
-        $this->project_index_path = $_SERVER['REQUEST_URI'];
+        $this->project_index_path = $this->getCurrentRequest();
 
         switch (ENVIRONMENT) {
             case 'development':
@@ -173,6 +173,17 @@ class Core extends event
                 }             
             }
         }
+    }
+
+    /**
+     * To get full url with current request
+     */
+
+    public function getCurrentRequest()
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $current_request = str_replace(PROJECTURL, '', $actual_link);
+        return $current_request;
     }
 
     public function route()

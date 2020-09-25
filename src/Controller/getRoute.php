@@ -2,6 +2,8 @@
 
 namespace ofi\ofi_php_framework\Controller;
 
+use Exception;
+
 trait getRoute {
 
     /**
@@ -31,6 +33,23 @@ trait getRoute {
                 }
             }
         }
+    }
+
+    public function Generate($name = '')
+    {
+        if(empty($name)) {
+            throw new Exception("You must define route name!");
+        }
+
+        $route = self::getAsArray();
+
+        for ($i=0; $i < count($route) ; $i++) { 
+            if(strtolower($route[$i]['name']) == $name) {
+                return PROJECTURL . '/' . $route[$i]['name']; 
+            }
+        }
+
+        return false;
     }
 
     /**
