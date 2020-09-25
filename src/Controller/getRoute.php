@@ -45,7 +45,7 @@ trait getRoute {
 
         for ($i=0; $i < count($route) ; $i++) { 
             if(strtolower($route[$i]['name']) == $name) {
-                return PROJECTURL . '/' . $route[$i]['name']; 
+                return PROJECTURL . '/' . $route[$i]['url']; 
             }
         }
 
