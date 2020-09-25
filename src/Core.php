@@ -203,7 +203,7 @@ class Core extends event
 
                 // Checking HTTP Method
                 if (!$searchValue['method'] || $_SERVER['REQUEST_METHOD'] === strtoupper($searchValue['method'])) {
-                    $controller->loadView($searchValue['to'], $paramData);
+                    $controller->loadView($searchValue['to'], []);
                 } else {
                     $controller->error500('Error '.$searchValue['url'].' url is '.strtoupper($searchValue['method']).' HTTP Method');
                 }

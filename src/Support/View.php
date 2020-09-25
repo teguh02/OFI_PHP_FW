@@ -8,6 +8,7 @@ namespace ofi\ofi_php_framework\Support;
 
 use DebugBar\StandardDebugBar;
 use Exception;
+use ofi\ofi_php_framework\Helper\helper;
 
 trait View {
 
@@ -93,7 +94,7 @@ trait View {
         if(is_file($path_to_file)) {
             // Tampilkan template
             $flash = new \Plasticbrain\FlashMessages\FlashMessages();
-            $helper = new \App\Core\helper();
+            $helper = new helper();
             extract($viewData);
             include $path_to_file;
         } else {

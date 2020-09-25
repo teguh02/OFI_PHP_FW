@@ -15,7 +15,7 @@ class route {
 
     public function __construct()
     {
-        $this->routeStatus = false;
+        self::$routeStatus = false;
     }
 
     public static function start()

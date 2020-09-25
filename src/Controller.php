@@ -33,7 +33,7 @@ class Controller extends event
         $capsule = new DB;
         $capsule->addConnection([
             'driver'    => $config['driver'] != null ? $config['driver'] : 'mysql' ,
-            'host'      => $config['localhost'] != null ? $config['localhost'] : 'localhost',
+            'host'      => $config['host'] != null ? $config['host'] : 'localhost',
             'port'      => $config['port'] != null ? $config['port'] : '3306',
             'database'  => $config['database'] != null ? $config['database'] : 'ofi',
             'username'  => $config['username'] != null ? $config['username'] : 'root',
