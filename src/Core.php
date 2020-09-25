@@ -12,6 +12,7 @@ use ofi\ofi_php_framework\Support\CSRF;
 session_start();
 global $config;
 require 'config.php';
+require '../vendor/autoload.php';
 
 /**
  * Add CSRF input hidden to your form
