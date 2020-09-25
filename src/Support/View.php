@@ -26,7 +26,9 @@ trait View {
 
     public function loadTemplate($viewName, $viewData = [])
     {
-        extract($viewData);
+        if (!empty($viewData)) {
+            extract($viewData);
+        }
 
         if(ENVIRONMENT == 'development') {
             $debugbar = new StandardDebugBar();
@@ -95,7 +97,9 @@ trait View {
             // Tampilkan template
             $flash = new \Plasticbrain\FlashMessages\FlashMessages();
             $helper = new helper();
-            extract($viewData);
+            if(!empty($viewData)) {
+                extract($viewData);
+            }
             include $path_to_file;
         } else {
             // Jika tidak maka berikan pesan error
