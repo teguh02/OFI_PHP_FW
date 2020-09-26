@@ -80,13 +80,6 @@ trait View {
 
     public function loadViewInTemplate($viewName, $viewData)
     {
-        // Cek apakah konfigurasi views folder ada atau tidak
-        if (!defined('ViewsFolder')) {
-            throw new Exception("Can't find views folder configuration!", 1);
-        }
-
-        // Jika ada maka menuju proses selanjutnya
-
         /**
          * Pertama kita perlu mengecek apakah file ada 
          * atau tidak
