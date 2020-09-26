@@ -46,6 +46,10 @@ class Core extends event
 
         $this->project_index_path = $this->getCurrentRequest();
 
+        if(!defined('BASEURL') || !defined('UPLOADPATH')) {
+            throw new Exception("Something went wrong, please check BASEURL or UPLOADPATH configuration!");
+        }
+
         switch (ENVIRONMENT) {
             case 'development':
                 ini_set('display_errors', 1);
