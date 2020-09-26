@@ -99,6 +99,7 @@ trait View {
             // Tampilkan template
             $flash = new \Plasticbrain\FlashMessages\FlashMessages();
             $helper = new helper();
+            $Route = new Route();
             if(!empty($viewData)) {
                 extract($viewData);
             }

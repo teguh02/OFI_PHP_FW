@@ -35,7 +35,30 @@ trait getRoute {
         }
     }
 
-    public function Generate($name = '')
+    /**
+     * To generate url
+     */
+
+    public static function GeneratePath($value = '/', $parameter = null)
+    {
+        $getFirstChar = substr($value, 0, 1);
+
+        if ($getFirstChar == '/') {
+            $url = PROJECTURL . '/' . ltrim($value, '/');
+        }
+
+        if(!empty($parameter)) {
+            $explode = explode(':', $parameter);
+            $key = $explode[0];
+            $keyVal = $explode[1];
+
+            $url = PROJECTURL . $value . '/?' . $key . '=' . $keyVal;
+        }
+
+        return $url;
+    }
+
+    public static function Generate($name = '')
     {
         if(empty($name)) {
             throw new Exception("You must define route name!");

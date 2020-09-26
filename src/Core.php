@@ -37,7 +37,7 @@ define('CSRFVALUE', CSRF::getToken());
 class Core extends event
 {
 
-    protected const MINIMUM_PHP_VERSION = "7.2.0";
+    protected const MINIMUM_PHP_VERSION = "7.0.0";
 
     public function __construct()
     {
@@ -89,6 +89,7 @@ class Core extends event
     {
         // Harus yang paling atas
         $this->CSRF();
+        $this->whenRun();
 
         // To block PUT, PATCH, DELETE Request (Only GET and POST are allowed in our system)   
         $request_method = $_SERVER['REQUEST_METHOD'];
@@ -98,7 +99,6 @@ class Core extends event
         }
 
         $this->checkMyPHPVersion();
-        $this->whenRun();
         $this->route();
     }
 
@@ -305,13 +305,21 @@ class Core extends event
                     }
 
                     $classNameErr = explode('\\', $className);
-                    throw new Exception('File ' . str_replace('\\', '/', $className) .  ".php Error : Can't find method " . $method_name . '() in Class ' . $classNameErr[count($classNameErr) - 1], 1);
+                    if(ENVIRONMENT == 'development') {
+                        throw new Exception('File ' . str_replace('\\', '/', $className) .  ".php Error : Can't find method " . $method_name . '() in Class ' . $classNameErr[count($classNameErr) - 1], 1);
+                    } else {
+                        $controller->error404();
+                    }
+
                     die();
                 }
 
                 $classNameController -> $method_name();
             } else {
+                if(ENVIRONMENT == 'development')
                 throw new Exception("Class " . $class_name . ' not found, or some route are disabled', 1);
+                else 
+                $controller->error404();
             }
         }
     }
