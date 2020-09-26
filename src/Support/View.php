@@ -92,7 +92,7 @@ trait View {
          * atau tidak
          */
 
-        $path_to_file = ViewsFolder . '/' . str_replace('\\', '/', $viewName) . '.ofi.php';
+        $path_to_file = BASEURL . '/resources/views/' . str_replace('\\', '/', $viewName) . '.ofi.php';
 
         // Jika file ada
         if(is_file($path_to_file)) {

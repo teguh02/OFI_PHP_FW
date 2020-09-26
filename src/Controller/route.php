@@ -112,9 +112,9 @@ class route {
                 }
             } else {
                 // Cek apakah file view tersedia?
-                $path = str_replace('\\', '/', BASEURL) . '/Views/' . $value . '.ofi.php'; 
+                $path = str_replace('\\', '/', BASEURL) . '/resources/views/' . $value . '.ofi.php'; 
                 if(!file_exists($path)) {
-                    throw new Exception("File /Views/" . $value . '.ofi.php not found!', 1);
+                    throw new Exception("File /resources/views/" . $value . '.ofi.php not found!', 404);
                 }
             }
 
