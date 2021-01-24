@@ -56,9 +56,9 @@ trait Request {
     {
         if($this->request) {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                return $_REQUEST[$val_request];     
+                return $_REQUEST[$val_request] ?? null;     
             } else {
-                return $_GET[$val_request];
+                return $_GET[$val_request] ?? null;
             }
         } else {
             throw new Exception($this->whenError, 1);
@@ -88,7 +88,7 @@ trait Request {
         if($this->request) {
             if($this->header_request) {
                 $header = getallheaders();
-                return $header[$request_val];
+                return $header[$request_val] ?? null;
             } else {
                 throw new Exception("Wrong method please select header method first", 1);
             }

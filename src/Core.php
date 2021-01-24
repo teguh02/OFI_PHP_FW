@@ -163,16 +163,13 @@ class Core extends event
 
         for ($i=0; $i < count($routeArr) ; $i++) { 
 
-            if ($route->getAutoRoute()) {
-                try {    
-                        $explode_request = explode('/', trim($this->getCurrentRequest(), '/'));
-                        $className = '\\App\\Controllers\\' . $explode_request[0] . 'Controller';
-                        $newController  = new $className;
-                        $methodName = (String) $explode_request[1];
-                        return $newController->$methodName();
-                } catch (\Throwable $th) {
-
-                }
+            $explode_request = explode('/', trim($this->getCurrentRequest(), '/'));
+            $className = '\\App\\Controllers\\' . $explode_request[0] . 'Controller';
+            
+            if (class_exists($className) && $route->getAutoRoute()) {
+                $newController  = new $className;
+                $methodName = (String) $explode_request[1];
+                return $newController->$methodName();
             }
 
             if ($routeArr[$i][0] === $url) {
