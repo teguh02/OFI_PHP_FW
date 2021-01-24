@@ -9,7 +9,7 @@ namespace ofi\ofi_php_framework\Support;
 use DebugBar\StandardDebugBar;
 use Exception;
 use ofi\ofi_php_framework\Helper\helper;
-use ofi\ofi_php_framework\Controller\route as Route;
+use ofi\ofi_php_framework\Route\Route;
 
 trait View {
 
@@ -29,14 +29,6 @@ trait View {
     {
         if (!empty($viewData)) {
             extract($viewData);
-        }
-
-        if(ENVIRONMENT == 'development') {
-            $debugbar = new StandardDebugBar();
-            $debugbarRenderer = $debugbar->getJavascriptRenderer();	
-            $debugbar["messages"]->addMessage("OFI PHP Framework Ready To Use!");
-            $debugbar["messages"]->addMessage("Project URL : " . BASEURL);
-            $debugbar["messages"]->addMessage("Current URL Name : " . Route::getName());
         }
 
         echo '
@@ -64,13 +56,13 @@ trait View {
                     <link rel="stylesheet" type="text/css" href="'. PROJECTURL .'/assets/css/bootstrap.min.css">
                     <script src="'. PROJECTURL .'/assets/js/jquery.min.js"></script>
                     <script src="'. PROJECTURL .'/assets/js/bootstrap.min.js"></script>';
-                    if(ENVIRONMENT == "development") echo $debugbarRenderer->renderHead();
+                    
+                    // php code here
             echo '
             </head>
             <body>';
 
                 $this->loadViewInTemplate($viewName,$viewData);
-                if(ENVIRONMENT == "development") echo $debugbarRenderer->render();
 
             echo '
             </body>
@@ -92,7 +84,8 @@ trait View {
             // Tampilkan template
             $flash = new \Plasticbrain\FlashMessages\FlashMessages();
             $helper = new helper();
-            $Route = new Route();
+            $Route = new Route;
+            $route = new Route;
             if(!empty($viewData)) {
                 extract($viewData);
             }
