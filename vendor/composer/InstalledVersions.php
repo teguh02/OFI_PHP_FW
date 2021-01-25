@@ -1,5 +1,15 @@
 <?php
 
+
+
+
+
+
+
+
+
+
+
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -19,19 +29,19 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2bbe3180591e070d57296585b4e5c04b420074f9',
+    'reference' => 'c50ea587a52b9d0533464f592e546505c52bdc1c',
     'name' => 'ofi/ofi_php_framework',
   ),
   'versions' => 
   array (
     'filp/whoops' => 
     array (
-      'pretty_version' => '2.9.1',
-      'version' => '2.9.1.0',
+      'pretty_version' => '2.9.2',
+      'version' => '2.9.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '307fb34a5ab697461ec4c9db865b20ff2fd40771',
+      'reference' => 'df7933820090489623ce0be5e85c7e693638e536',
     ),
     'ofi/ofi_php_framework' => 
     array (
@@ -40,7 +50,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2bbe3180591e070d57296585b4e5c04b420074f9',
+      'reference' => 'c50ea587a52b9d0533464f592e546505c52bdc1c',
     ),
     'plasticbrain/php-flash-messages' => 
     array (
@@ -59,6 +69,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '0f73288fd15629204f9d42b7055f72dacbe811fc',
+    ),
+    'splitbrain/php-cli' => 
+    array (
+      'pretty_version' => '1.1.7',
+      'version' => '1.1.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'fb4f888866d090b10e3e68292d197ca274cea626',
     ),
   ),
 );

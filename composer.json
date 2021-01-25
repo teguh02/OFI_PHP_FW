@@ -11,7 +11,8 @@
     "minimum-stability": "stable",
     "require": {
         "filp/whoops": "^2.7",
-        "plasticbrain/php-flash-messages": "^1.0"
+        "plasticbrain/php-flash-messages": "^1.0",
+        "splitbrain/php-cli": "^1.1"
     },
     "autoload": {
         "psr-4": {

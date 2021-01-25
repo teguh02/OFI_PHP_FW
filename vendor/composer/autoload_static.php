@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitfe7ce7bb8c2bdc67d53741ccf5d031c7
 {
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'splitbrain\\phpcli\\' => 18,
+        ),
         'o' => 
         array (
             'ofi\\ofi_php_framework\\' => 22,
@@ -23,6 +27,10 @@ class ComposerStaticInitfe7ce7bb8c2bdc67d53741ccf5d031c7
     );
 
     public static $prefixDirsPsr4 = array (
+        'splitbrain\\phpcli\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/splitbrain/php-cli/src',
+        ),
         'ofi\\ofi_php_framework\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
