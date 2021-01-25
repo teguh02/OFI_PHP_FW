@@ -13,6 +13,7 @@ use ofi\ofi_php_framework\Support\CSRF;
 use ofi\ofi_php_framework\Support\errorPage;
 
 global $config;
+require_once __DIR__ . '/Support/kint.phar';
 require_once 'config.php';
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 require_once BASEURL . '/route/web.php';
@@ -45,8 +46,6 @@ class Core extends event
     {
         $middleware = new middlewareKernel();
         $middleware->register();
-
-        $this->project_index_path = $this->getCurrentRequest();
 
         if(!defined('BASEURL') || !defined('UPLOADPATH')) {
             throw new Exception("Something went wrong, please check BASEURL or UPLOADPATH configuration!");
@@ -111,7 +110,7 @@ class Core extends event
         $request_method = $_SERVER['REQUEST_METHOD'];
 
         // Get Request URL
-        $request_url = $this->getCurrentRequest();
+        $request_url = rtrim($this->getCurrentRequest(), '/');
 
         if ($request_method === "POST" || $request_method === 'PUT') {
 
@@ -124,7 +123,7 @@ class Core extends event
             }
 
             // Cari apakah url pada request_url ada dalam daftar bypassCSRF?
-            include 'App/Middleware/bypassCSRF.php';
+            include BASEURL . 'App/Middleware/bypassCSRF.php';
 
             // Jika tidak ditemukan dalam daftar array maka tampilkan pesan
             if(!in_array($request_url, $bypass)) {
