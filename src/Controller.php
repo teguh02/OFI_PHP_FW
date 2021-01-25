@@ -52,18 +52,4 @@ class Controller extends event
         // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
         $capsule->bootEloquent();
     }
-
-    /**
-     * Untuk memvalidasi bahwa untuk mengunjungi suatu method 
-     * yang diberi kode ini harus menggunakan http method post
-     */
-
-    public function must_post()
-    {
-        if ($_SERVER['REQUEST_METHOD'] != "POST") {
-            $this -> error500("Error, because this method are using POST method");
-        } else {
-            return true;
-        }
-    }
 }
