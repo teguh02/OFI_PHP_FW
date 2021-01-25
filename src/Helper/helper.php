@@ -46,44 +46,6 @@ class helper extends Controller
     }
 
     /**
-     * Method  blockIp
-     * This function is detect a IP, what thats IP is
-     * allow to visit your sites or not. When not allowed
-     * your visitor will have a 500 error form they browser.
-     */
-    public static function blockIp()
-    {
-        // Get real visitor IP behind CloudFlare network
-        if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
-            $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
-            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER['HTTP_CF_CONNECTING_IP'];
-        }
-        $client = @$_SERVER['HTTP_CLIENT_IP'];
-        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-        $remote = $_SERVER['REMOTE_ADDR'];
-
-        if (filter_var($client, FILTER_VALIDATE_IP)) {
-            $ip = $client;
-        } elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
-            $ip = $forward;
-        } else {
-            $ip = $remote;
-        }
-
-        // search IP in blockIp.php
-        include 'App/Middleware/blockIp.php';
-
-        $z = array_search($ip, $block);
-
-        if (in_array($ip, $block)) {
-            header('HTTP/1.1 503 Service Temporarily Unavailable');
-            header('Status: 503 Service Temporarily Unavailable');
-            header($_SERVER['SERVER_PROTOCOL'].' 503 Service Temporarily Unavailable', true, 503);
-            exit();
-        }
-    }
-
-    /**
      * This function can remove a folder
      * and all files inside the folder
      */
