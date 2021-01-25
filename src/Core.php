@@ -154,7 +154,13 @@ class Core extends event
     private function matchRoute($url) {
         $route = new Route;
         $routeArr = $route->getRouteArray();
+
+        // auto route
+        if ($route->getAutoRoute()) {
+            $this->autoRouteMatching();
+        }
         
+        // manual route
         $url = trim($url, '/');
 
         if(empty($url)) {
@@ -162,15 +168,6 @@ class Core extends event
         }
 
         for ($i=0; $i < count($routeArr) ; $i++) { 
-
-            $explode_request = explode('/', trim($this->getCurrentRequest(), '/'));
-            $className = '\\App\\Controllers\\' . $explode_request[0] . 'Controller';
-            
-            if (class_exists($className) && $route->getAutoRoute()) {
-                $newController  = new $className;
-                $methodName = (String) $explode_request[1];
-                return $newController->$methodName();
-            }
 
             $routeArr[$i][0] = trim($routeArr[$i][0], '/');
 
@@ -218,4 +215,31 @@ class Core extends event
 
         return $this->error404();
     }
+
+    /**
+     * Auto route
+     */
+     private function autoRouteMatching()
+     {
+        $route = new Route;
+        $explode_request = explode('/', trim($this->getCurrentRequest(), '/'));
+        $file_path = null;
+        $auto_method_name = $explode_request[count($explode_request) - 1];
+        
+        for ($i=0; $i < count($explode_request) - 1; $i++) { 
+            $file_path .= $explode_request[$i] . '\\';
+        }
+
+        $file_path = rtrim($file_path, '\\');
+
+        $auto_className = '\\App\\Controllers\\' . $file_path . 'Controller';
+        
+        if ($route->getAutoRoute()) {
+            $newController  = new $auto_className;
+            $auto_methodName = (String) $auto_method_name;
+            return $newController->$auto_methodName();
+        }
+
+        return false;
+     }
 }
