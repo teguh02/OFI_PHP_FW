@@ -57,12 +57,28 @@ trait View {
                     <script src="'. PROJECTURL .'/assets/js/jquery.min.js"></script>
                     <script src="'. PROJECTURL .'/assets/js/bootstrap.min.js"></script>';
                     
+                    if (defined('codeToHeader') && !empty(codeToHeader)) {
+                        echo PHP_EOL;
+                        echo "<!-- my own html code -->" . PHP_EOL;
+                        for ($i=0; $i < count(codeToHeader) ; $i++) { 
+                            echo codeToHeader[$i];
+                        }
+                    }
+
                     // php code here
             echo '
             </head>
             <body>';
 
                 $this->loadViewInTemplate($viewName,$viewData);
+
+                if (defined('codeBeforeBody') && !empty(codeBeforeBody)) {
+                    echo PHP_EOL;
+                    echo "<!-- my own html code -->" . PHP_EOL;
+                    for ($i=0; $i < count(codeBeforeBody); $i++) { 
+                        echo codeBeforeBody[$i];
+                    }
+                }
 
             echo '
             </body>

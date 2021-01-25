@@ -172,6 +172,12 @@ class Core extends event
                 return $newController->$methodName();
             }
 
+            $routeArr[$i][0] = trim($routeArr[$i][0], '/');
+
+            if (empty($routeArr[$i][0])) {
+                $routeArr[$i][0] = '/';
+            }
+
             if ($routeArr[$i][0] === $url) {
 
                 // option route

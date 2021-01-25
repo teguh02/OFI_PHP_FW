@@ -95,17 +95,39 @@ class Route implements routeInterface {
     /**
      * Generate route url
      */
-    public function generatePath(String $routeName)
+    public function generatePath(String $routeName, $parameter = [])
     {
         $routeArray = $this->getRouteArray();
         $routeName = trim($routeName, '/');
+        $generateByName = false;
+        $query = null;
 
         for ($i=0; $i < count($routeArray) ; $i++) { 
             if (isset($routeArray[$i][5]['name']) && $routeArray[$i][5]['name'] === $routeName) {
-                return PROJECTURL . '/' . $routeArray[$i][0];
+                $result = PROJECTURL . '/' . ltrim($routeArray[$i][0],  '/');
+                $generateByName = true;
             }
         }
 
-        return PROJECTURL . '/' . $routeName;
+        if (!empty($parameter)) {
+            if (!is_array($parameter)) {
+                $explode = explode(':', str_replace(' ', '', $parameter));
+                $query = '/?' . $explode[0] . '=' . $explode[1];
+            } else {
+                $queryArray = [];
+                for ($i=0; $i < count($parameter) ; $i++) { 
+                    $explode = explode(':', str_replace(' ', '', $parameter[$i]));
+                    $queryArray[$explode[0]] = $explode[1];
+                }
+
+                $query = '/?' . http_build_query($queryArray);
+            }
+        }
+
+        if ($generateByName) {
+            return  $result . $query;   
+        } else {
+            return PROJECTURL . '/' . $routeName . $query;
+        }
     }
 }

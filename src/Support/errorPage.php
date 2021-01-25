@@ -44,6 +44,15 @@ trait errorPage {
     {
         extract($viewData);
 
+        $file = BASEURL . '/resources/views/errorPage/error.ofi.php';
+
+        if (file_exists($file)) {
+            if (defined('overwriteErrorPage') && overwriteErrorPage !== false) {
+                include_once $file;
+                die();
+            }
+        }
+
         echo '
             <!DOCTYPE html>
             <html lang="en">
