@@ -14,6 +14,7 @@ class OfiCli extends Cli {
     {
         $options->setHelp('OFI PHP Framework Cli Tools');
 
+        $options->registerCommand('serve', 'Run Development Mode');
         $options->registerCommand('makeController', 'Make controller file');
         $options->registerCommand('makeModel', 'Make model file');
     }
@@ -22,6 +23,11 @@ class OfiCli extends Cli {
     protected function main(Options $options)
     {
         switch ($options -> getCmd()) {
+
+            case 'serve':
+                chdir(BASEURL);
+                shell_exec("php -S localhost:9000");
+                break;
 
             case 'makeModel':
                 $destination = BASEURL . 'App' . DIRECTORY_SEPARATOR;

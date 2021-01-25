@@ -156,9 +156,7 @@ class Core extends event
         $routeArr = $route->getRouteArray();
 
         // auto route
-        if ($route->getAutoRoute()) {
-            $this->autoRouteMatching();
-        }
+        $this->autoRouteMatching();
         
         // manual route
         $url = trim($url, '/');
@@ -234,7 +232,7 @@ class Core extends event
 
         $auto_className = '\\App\\Controllers\\' . $file_path . 'Controller';
         
-        if ($route->getAutoRoute()) {
+        if (class_exists($auto_className) && $route->getAutoRoute()) {
             $newController  = new $auto_className;
             $auto_methodName = (String) $auto_method_name;
             return $newController->$auto_methodName();
